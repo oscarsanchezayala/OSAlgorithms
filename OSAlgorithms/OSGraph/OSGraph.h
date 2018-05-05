@@ -60,15 +60,32 @@
  * Compute Dijkstra's Algorithm which finds the shortest
  * path between the given source to all the vertexes in a directed graph.
  *
- * @param idSourceVertex The identifier of the start Vertex to compute Dijkstra's Algorithm
- * @return An array with the shortest path between two vertexes.
+ * @param idSourceVertex The identifier of the start Vertex to compute Dijkstra's Algorithm.
+ * @return An array with the shortest path between two vertices.
  */
 -(NSArray *)computeDijkstraAlgorithmFrom:(NSString *)idSourceVertex;
 
+/**
+ * Compute Bellman-Ford Algorithm which finds the shortest
+ * path between the given surce to all the vertexes in a directed weighted graph.
+ *
+ * @return An array with the shortest path between two vertices.
+ */
 -(NSArray *)computeBellmanFordAlgorithmFrom:(NSString *)idSourceVertex;
 
+/**
+ * Compute Johnson's Algorithm which finds the shortest
+ * path between all pair of vertices in a sparce, edge-weighted, direct graph.
+ *
+ * @return An array with the shortest path between all pair vertices.
+ */
 -(NSArray *)computeJohnsonAlgorithm;
 
+/**
+ * Compute topologial sort of a directed graph.
+ *
+ * @return An array with the topological sort.
+ */
 -(NSArray *)computeTopologicalSort;
 
 @end
