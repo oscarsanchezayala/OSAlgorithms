@@ -15,6 +15,7 @@
 #import "OSArray.h"
 #import "OS_DFS_BFS.h"
 #import "OSTreeNode.h"
+#import "OSUndirectedGraphNode.h"
 
 @interface OSAlgorithms : NSObject
 
@@ -216,14 +217,14 @@
     
     [osDFS_BFS LC199:rootLC199];
 
-    UndirectedGraphNode *nodeLC133_0 = [[UndirectedGraphNode alloc] initWithValue:0];
-    UndirectedGraphNode *nodeLC133_1 = [[UndirectedGraphNode alloc] initWithValue:1];
-    UndirectedGraphNode *nodeLC133_2 = [[UndirectedGraphNode alloc] initWithValue:2];
+    OSUndirectedGraphNode *nodeLC133_0 = [[OSUndirectedGraphNode alloc] initWithValue:0];
+    OSUndirectedGraphNode *nodeLC133_1 = [[OSUndirectedGraphNode alloc] initWithValue:1];
+    OSUndirectedGraphNode *nodeLC133_2 = [[OSUndirectedGraphNode alloc] initWithValue:2];
     [nodeLC133_0.neighbors addObject:nodeLC133_1];
     [nodeLC133_0.neighbors addObject:nodeLC133_2];
     [nodeLC133_1.neighbors addObject:nodeLC133_2];
     [nodeLC133_2.neighbors addObject:nodeLC133_2];
-    [algos LC133:nodeLC133_0];
+    [osDFS_BFS LC133:nodeLC133_0];
 
     NSArray *arrayLC417 = @[@[@1, @2, @2, @3, @5],
                             @[@3, @2, @3, @4, @4],
@@ -231,6 +232,37 @@
                             @[@6, @7, @1, @4, @5],
                             @[@5, @1, @1, @2, @4]];
     [osDFS_BFS LC417:arrayLC417];
+    
+    NSString *strLC394 = @"3[a]2[bc]";
+    //strLC394 = @"3[a2[c]]";
+    [osDFS_BFS LC394:strLC394];
+    
+    NSArray *arrayLC105_preorder = @[@3, @9, @20, @15, @7];
+    NSArray *arrayLC105_inorder = @[@9, @3, @15, @20, @7];
+    [osDFS_BFS LC105:arrayLC105_preorder with:arrayLC105_inorder];
+
+    NSArray *arrayLC106_postorder = @[@9, @15, @7, @20, @3];
+    NSArray *arrayLC106_inorder = @[@9, @3, @15, @20, @7];
+    arrayLC106_postorder = @[@1, @2];
+    arrayLC106_inorder = @[@1, @2];
+    [osDFS_BFS LC106:arrayLC106_postorder with:arrayLC106_inorder];
+
+    OSTreeNode *rootLC114 = [[OSTreeNode alloc] initWithValue:1];
+    rootLC114.left = [[OSTreeNode alloc] initWithValue:2];
+    rootLC114.left.right = [[OSTreeNode alloc] initWithValue:4];
+    rootLC114.left.left = [[OSTreeNode alloc] initWithValue:3];
+    rootLC114.right = [[OSTreeNode alloc] initWithValue:5];
+    rootLC114.right.right = [[OSTreeNode alloc] initWithValue:6];
+    [osDFS_BFS LC114:rootLC114];
+
+    OSTreeNode *rootLC124 = [[OSTreeNode alloc] initWithValue:1];
+    rootLC124.left = [[OSTreeNode alloc] initWithValue:2];
+    rootLC124.right = [[OSTreeNode alloc] initWithValue:3];
+    [osDFS_BFS LC124:rootLC124];
+    
+    NSArray *arrayLC207 = @[@[@0, @1]];
+    int numLC207 = 2;
+    [osDFS_BFS LC207:numLC207 with:arrayLC207];
 }
 
 @end

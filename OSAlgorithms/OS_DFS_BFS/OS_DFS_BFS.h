@@ -12,6 +12,8 @@
 
 @interface OS_DFS_BFS : NSObject
 
+@property int resultLC124;
+
 /**
  * 296. Best meeting point
  * A group of two or more people wants to meet and minimize the total travel distance.
@@ -130,5 +132,87 @@
  * @return The array of positions where water can flow to both oceans
  */
 -(NSArray *)LC417:(NSArray *)M;
+
+/**
+ * 394. Decode String
+ * Given an encoded string, return it's decoded string.
+ * The encoding rule is: k[encoded_string], where the encoded_string
+ * inside the square brackets is being repeated exactly k times.
+ * Note that k is guaranteed to be a positive integer.
+ * You may assume that the input string is always valid;
+ * No extra white spaces, square brackets are well-formed, etc.
+ *
+ * @param s The encoded string
+ * @return The decoded string
+ */
+-(NSString *)LC394:(NSString *)s;
+
+/**
+ * 105. Construct Binary Tree from Preorder and Inorder Traversal
+ * Given preorder and inorder traversal of a tree, construct the binary tree.
+ *
+ * @param preorder The pre-order array of integers
+ * @param inorder The in-order array of integers
+ * @return A TreeNode
+ */
+-(OSTreeNode *)LC105:(NSArray *)preorder with:(NSArray *)inorder;
+
+/**
+ * 106. Construct Binary Tree from Inorder and Postorder Traversal
+ *
+ * Given inorder and postorder traversal of a tree, construct the binary tree.
+ *
+ * @param postorder The pre-order array of integers
+ * @param inorder The in-order array of integers
+ * @return A TreeNode
+ */
+-(OSTreeNode *)LC106:(NSArray *)postorder with:(NSArray *)inorder;
+
+/**
+ * 114. Flatten Binary Tree to Linked List
+ * Given a binary tree, flatten it to a linked list in-place.
+ *
+ * @param root The tree to flatten
+ */
+-(void)LC114:(OSTreeNode *)root;
+
+/**
+ * 124. Binary Tree Maximum Path Sum
+ * Given a non-empty binary tree, find the maximum path sum.
+ * For this problem, a path is defined as any sequence of nodes from some
+ * starting node to any node in the tree along the parent-child connections.
+ * The path must contain at least one node and does not need to go through the root.
+ *
+ * @param root The binary tree
+ * @return The maximum path sum
+ */
+-(int)LC124:(OSTreeNode *)root;
+
+/**
+ * 207. Course Schedule
+ * There are a total of n courses you have to take, labeled from 0 to n-1.
+ * Some courses may have prerequisites, for example to take course 0 you
+ * have to first take course 1, which is expressed as a pair: [0,1]
+ * Given the total number of courses and a list of prerequisite pairs,
+ * is it possible for you to finish all courses?
+ *
+ * @param numCourses Total number of courses
+ * @param prerequisites The array of prerequisites
+ * @return Is posible to take the courses
+ */
+-(BOOL)LC207:(int)numCourses with:(NSArray *)prerequisites;
+
+/**
+ * 98. Validate Binary Search Tree
+ * Given a binary tree, determine if it is a valid binary search tree (BST).
+ * Assume a BST is defined as follows:
+ * The left subtree of a node contains only nodes with keys less than the node's key.
+ * The right subtree of a node contains only nodes with keys greater than the node's key.
+ * Both the left and right subtrees must also be binary search trees.
+ *
+ * @param root The Binary Search Tree to validate
+ * @return Is a valid BST
+ */
+-(BOOL)LC098:(OSTreeNode *)root;
 
 @end

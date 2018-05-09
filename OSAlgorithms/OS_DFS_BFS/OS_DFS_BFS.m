@@ -490,4 +490,252 @@
     }
 }
 
+-(NSString *)LC394:(NSString *)s{
+    
+    if([s length] == 0){
+        return @"";
+    }
+    NSString *result = @"";
+    
+    NSMutableArray *stack = [NSMutableArray array];
+    NSMutableArray *stackNums = [NSMutableArray array];
+    NSCharacterSet *validNums = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    int index = 0;
+    int currentNum = 0;
+    NSString *temp;
+    
+    while(index < [s length]){
+        
+        char currentChar = [s characterAtIndex:index];
+        if([validNums characterIsMember:currentChar]){
+            currentNum = 0;
+            while([validNums characterIsMember:currentChar]){
+                currentNum = ((currentChar - '0') + (10 * currentNum));
+                index++;
+                currentChar = [s characterAtIndex:index];
+            }
+            
+            [stackNums addObject:[NSNumber numberWithInt:currentNum]];
+            [stack addObject:[NSString stringWithFormat:@"%c", currentChar]];
+        }
+        else if(currentChar == ']'){
+            temp = [stack lastObject];
+            [stack removeLastObject];
+            while(![[stack lastObject] isEqualToString:@"["]){
+                temp = [NSString stringWithFormat:@"%@%@", [stack lastObject], temp];
+                [stack removeLastObject];
+            }
+            [stack removeLastObject];
+            
+            NSString *currentCluster = @"";
+            currentNum = [[stackNums lastObject] intValue];
+            for(int i = 0; i < currentNum; i++){
+                currentCluster = [NSString stringWithFormat:@"%@%@", currentCluster, temp];
+            }
+            
+            [stack addObject:currentCluster];
+            [stackNums removeLastObject];
+        }
+        else{
+            [stack addObject:[NSString stringWithFormat:@"%c", currentChar]];
+        }
+        
+        index++;
+    }
+    
+    result = [stack componentsJoinedByString:@""];
+    return result;
+}
+
+-(OSTreeNode *)LC105:(NSArray *)preorder with:(NSArray *)inorder{
+    
+    if([preorder count] == 0 || [inorder count] == 0){
+        return nil;
+    }
+    
+    // First element in preorder array is always the root
+    OSTreeNode *result = [[OSTreeNode alloc] initWithValue:[[preorder objectAtIndex:0] intValue]];
+    OSTreeNode *tempTree = result;
+    NSMutableArray *stack = [NSMutableArray array];
+    int preorderIndex = 1;
+    int inorderIndex = 0;
+    BOOL flagLeftRight = false;
+    // Add root to the stack
+    [stack addObject:result];
+    while(preorderIndex < [preorder count]){
+        // If last element in the stack is equal to element at current index of inorder array that means we skip
+        // current element and the next new node will be the right node, basically inorder array will help us
+        // to know when should we add the right node
+        if([stack count] != 0 && ((OSTreeNode *)[stack lastObject]).value == [[inorder objectAtIndex:inorderIndex] intValue]){
+            // Update current tempTree since it is right node will be the new one
+            tempTree = [stack lastObject];
+            [stack removeLastObject];
+            flagLeftRight = true;
+            inorderIndex++;
+        }
+        else{
+            OSTreeNode *newNode = [[OSTreeNode alloc] initWithValue:[[preorder objectAtIndex:preorderIndex] intValue]];
+            //If flag is true that means next object will be the right node of current tempTree
+            if(flagLeftRight){
+                tempTree.right = newNode;
+                // Update flag since next new node will the left node
+                flagLeftRight = false;
+            }
+            else{
+                tempTree.left = newNode;
+            }
+            // tempTree it is always the las element created
+            tempTree = newNode;
+            [stack addObject:newNode];
+            preorderIndex++;
+        }
+    }
+    
+    return result;
+}
+
+-(OSTreeNode *)LC106:(NSArray *)postorder with:(NSArray *)inorder{
+    
+    if([postorder count] == 0 || [inorder count] == 0){
+        return nil;
+    }
+    
+    // Last element in postorder array is always the root
+    OSTreeNode *result = [[OSTreeNode alloc] initWithValue:[[postorder lastObject] intValue]];
+    OSTreeNode *currentTree = result;
+    OSTreeNode *lastTree = nil;
+    NSMutableArray *stack = [NSMutableArray array];
+    int postorderIndex = (int)[postorder count] - 2;
+    int inorderIndex = (int)[inorder count] - 1;
+    
+    [stack addObject:result];
+    while (postorderIndex > - 1){
+        
+        currentTree = [stack lastObject];
+        if(currentTree.value == [[inorder objectAtIndex:inorderIndex] intValue]){
+            inorderIndex--;
+            [stack removeLastObject];
+            lastTree = [stack lastObject];
+            if(lastTree.value == [[inorder objectAtIndex:inorderIndex] intValue]){
+                continue;
+            }
+            currentTree.left = [[OSTreeNode alloc] initWithValue:[[postorder objectAtIndex:postorderIndex] intValue]];
+            [stack addObject:currentTree.left];
+        }
+        else{
+            currentTree = [[OSTreeNode alloc] initWithValue:[[postorder objectAtIndex:postorderIndex] intValue]];
+            lastTree = [stack lastObject];
+            lastTree.right = currentTree;
+            [stack addObject:currentTree];
+        }
+        
+        postorderIndex--;
+    }
+    
+    return result;
+}
+
+-(void)LC114:(OSTreeNode *)root{
+    
+    if(root == nil){
+        return;
+    }
+    OSTreeNode *currentTree = root;
+    while(currentTree){
+        // We can swap nodes, basically going to the left and from there going to the deepest right node
+        // then set least right node with the current right node and then update the current right node
+        // with the left node and set left node to nil, repeat this process until we traverse all the right nodes
+        // and there is no more left nodes
+        if(currentTree.left){
+            OSTreeNode *tempNode = currentTree.left;
+            while(tempNode.right){
+                tempNode = tempNode.right;
+            }
+            tempNode.right = currentTree.right;
+            currentTree.right = currentTree.left;
+            currentTree.left = nil;
+        }
+        currentTree = currentTree.right;
+    }
+}
+
+-(int)LC124:(OSTreeNode *)root{
+    
+    if(root == nil){
+        return 0;
+    }
+    // Get the maximum value for left and right trees
+    int left = fmax([self LC124:root.left], 0);
+    int right = fmax([self LC124:root.right], 0);
+    // Update current max, either the sum of left, right and node or current max
+    _resultLC124 = fmax(_resultLC124, left + right + root.value);
+    // Return maximum path for an especific node
+    return fmax(left, right) + root.value;
+}
+
+-(BOOL)LC207:(int)numCourses with:(NSArray *)prerequisites{
+    
+    NSMutableSet *visited = [NSMutableSet set];
+    NSMutableSet *completed = [NSMutableSet set];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    for(NSArray *item in prerequisites){
+        NSNumber *first = [NSNumber numberWithInt:[[item objectAtIndex:0] intValue]];
+        NSNumber *second = [NSNumber numberWithInt:[[item objectAtIndex:1] intValue]];
+        NSMutableArray *temp = [dic objectForKey:first];
+        if(temp == nil){
+            temp = [NSMutableArray array];
+            [dic setObject:temp forKey:first];
+        }
+        [temp addObject:second];
+    }
+    
+    for(int i = 0; i < numCourses; i++){
+        [self helperLC207:dic with:visited with:completed with:[NSNumber numberWithInt:i]];
+        if([completed count] >= numCourses){
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+-(BOOL)helperLC207:(NSMutableDictionary *)courses with:(NSMutableSet *)visited with:(NSMutableSet *)completed with:(NSNumber *)course{
+    
+    if([completed containsObject:course]){
+        return true;
+    }
+    if([visited containsObject:course]){
+        return false;
+    }
+    NSMutableArray *items = [courses objectForKey:course];
+    for(NSNumber *item in items){
+        [visited addObject:course];
+        if(![self helperLC207:courses with:visited with:completed with:item]){
+            return false;
+        }
+    }
+    [completed addObject:course];
+    return true;
+}
+
+-(BOOL)LC098:(OSTreeNode *)root{
+    
+    return [self helperLC098:root with:INT_MIN with:INT_MAX];
+}
+
+-(BOOL)helperLC098:(OSTreeNode *)root with:(int)minVal with:(int)maxVal{
+    
+    if(root == nil){
+        return true;
+    }
+    
+    if(root.value >= maxVal || root.value <= minVal){
+        return false;
+    }
+    else{
+        return [self helperLC098:root.left with:minVal with:root.value] && [self helperLC098:root.right with:root.value with:maxVal];
+    }
+}
+
 @end
