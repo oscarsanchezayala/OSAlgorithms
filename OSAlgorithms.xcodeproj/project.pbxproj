@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0F237D69209A8F9400C83060 /* OSTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F237D68209A8F9400C83060 /* OSTreeNode.m */; };
 		0F237D6C209BCC0C00C83060 /* OSUndirectedGraphNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F237D6B209BCC0C00C83060 /* OSUndirectedGraphNode.m */; };
+		0FD4A6C020A5238300FA8DCE /* OSListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD4A6BF20A5238300FA8DCE /* OSListNode.m */; };
+		0FD4A6C420A5258F00FA8DCE /* OS_DP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD4A6C320A5258F00FA8DCE /* OS_DP.m */; };
 		0FEADC6A2092061100520C49 /* OSSimpleIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEADC692092061100520C49 /* OSSimpleIterator.m */; };
 		0FEADC6E20929E6B00520C49 /* OS_DFS_BFS.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEADC6D20929E6B00520C49 /* OS_DFS_BFS.m */; };
 		0FFCA349208397CA0072BBEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFCA348208397CA0072BBEC /* main.m */; };
@@ -39,6 +41,10 @@
 		0F237D68209A8F9400C83060 /* OSTreeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSTreeNode.m; sourceTree = "<group>"; };
 		0F237D6A209BCC0C00C83060 /* OSUndirectedGraphNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSUndirectedGraphNode.h; sourceTree = "<group>"; };
 		0F237D6B209BCC0C00C83060 /* OSUndirectedGraphNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSUndirectedGraphNode.m; sourceTree = "<group>"; };
+		0FD4A6BE20A5238300FA8DCE /* OSListNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSListNode.h; sourceTree = "<group>"; };
+		0FD4A6BF20A5238300FA8DCE /* OSListNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSListNode.m; sourceTree = "<group>"; };
+		0FD4A6C220A5258F00FA8DCE /* OS_DP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OS_DP.h; sourceTree = "<group>"; };
+		0FD4A6C320A5258F00FA8DCE /* OS_DP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OS_DP.m; sourceTree = "<group>"; };
 		0FEADC682092061100520C49 /* OSSimpleIterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSSimpleIterator.h; sourceTree = "<group>"; };
 		0FEADC692092061100520C49 /* OSSimpleIterator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSSimpleIterator.m; sourceTree = "<group>"; };
 		0FEADC6C20929E6B00520C49 /* OS_DFS_BFS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OS_DFS_BFS.h; sourceTree = "<group>"; };
@@ -84,6 +90,24 @@
 			path = OSTree;
 			sourceTree = "<group>";
 		};
+		0FD4A6BD20A5235900FA8DCE /* OSLinkedList */ = {
+			isa = PBXGroup;
+			children = (
+				0FD4A6BE20A5238300FA8DCE /* OSListNode.h */,
+				0FD4A6BF20A5238300FA8DCE /* OSListNode.m */,
+			);
+			path = OSLinkedList;
+			sourceTree = "<group>";
+		};
+		0FD4A6C120A5256900FA8DCE /* OSDP */ = {
+			isa = PBXGroup;
+			children = (
+				0FD4A6C220A5258F00FA8DCE /* OS_DP.h */,
+				0FD4A6C320A5258F00FA8DCE /* OS_DP.m */,
+			);
+			path = OSDP;
+			sourceTree = "<group>";
+		};
 		0FEADC67209205E500520C49 /* OSIterator */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +146,8 @@
 		0FFCA347208397CA0072BBEC /* OSAlgorithms */ = {
 			isa = PBXGroup;
 			children = (
+				0FD4A6C120A5256900FA8DCE /* OSDP */,
+				0FD4A6BD20A5235900FA8DCE /* OSLinkedList */,
 				0F237D66209A8F7600C83060 /* OSTree */,
 				0FEADC6B20929E4E00520C49 /* OS_DFS_BFS */,
 				0FEADC67209205E500520C49 /* OSIterator */,
@@ -248,6 +274,7 @@
 				0FFCA3772083DFAF0072BBEC /* OSDisjointSet.m in Sources */,
 				0FFCA36E2083DD480072BBEC /* OSEntryNode.m in Sources */,
 				0FFCA349208397CA0072BBEC /* main.m in Sources */,
+				0FD4A6C420A5258F00FA8DCE /* OS_DP.m in Sources */,
 				0F237D69209A8F9400C83060 /* OSTreeNode.m in Sources */,
 				0FEADC6A2092061100520C49 /* OSSimpleIterator.m in Sources */,
 				0FFCA37D2088023C0072BBEC /* OSArray.m in Sources */,
@@ -256,6 +283,7 @@
 				0FFCA36A2083984E0072BBEC /* OSGraph.m in Sources */,
 				0FFCA3712083DD5D0072BBEC /* OSFibonacciHeap.m in Sources */,
 				0FEADC6E20929E6B00520C49 /* OS_DFS_BFS.m in Sources */,
+				0FD4A6C020A5238300FA8DCE /* OSListNode.m in Sources */,
 				0FFCA36B2083984E0072BBEC /* OSVertex.m in Sources */,
 				0FFCA3692083984E0072BBEC /* OSEdge.m in Sources */,
 			);

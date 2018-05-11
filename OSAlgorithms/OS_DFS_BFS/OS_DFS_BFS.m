@@ -10,6 +10,7 @@
 #import "OSDisjointSet.h"
 #import "OSTreeNode.h"
 #import "OSUndirectedGraphNode.h"
+#import "OSListNode.h"
 
 #define matrixColsAllNeighbors [[NSArray alloc] initWithObjects:@1, @1, @1, @0, @0, @-1, @-1, nil]
 #define matrixRowsAllNeighbors [[NSArray alloc] initWithObjects:@-1, @0, @1, @-1, @1, @-1, @1, nil]
@@ -736,6 +737,83 @@
     else{
         return [self helperLC098:root.left with:minVal with:root.value] && [self helperLC098:root.right with:root.value with:maxVal];
     }
+}
+
+-(OSTreeNode *)LC109:(OSListNode *)head{
+    
+    if(head == nil){
+        return nil;
+    }
+    
+    OSTreeNode *result = [self helperLC109:head with:nil];
+    
+    return result;
+}
+
+-(OSTreeNode *)helperLC109:(OSListNode *)start with:(OSListNode *)end{
+    
+    if(start == end){
+        return nil;
+    }
+    
+    OSListNode *mid = start;
+    OSListNode *runner = start;
+    while(runner != end && runner.next != nil && runner.next != end){
+        mid = mid.next;
+        runner = runner.next.next;
+    }
+    
+    OSTreeNode *result = [[OSTreeNode alloc] initWithValue:mid.value];
+    result.left = [self helperLC109:start with:mid];
+    result.right = [self helperLC109:mid.next with:end];
+    
+    return result;
+}
+
+-(int)LC127:(NSString *)beginWord with:(NSString *)endWord with:(NSArray *)wordList{
+    
+    if(![wordList containsObject:endWord]){
+        return 0;
+    }
+    
+    int result = 0;
+    NSMutableArray *queue = [NSMutableArray array];
+    NSMutableSet *visited = [NSMutableSet set];
+    NSString *currentWord = @"";
+    NSString *tempWord = @"";
+    [queue addObject:beginWord];
+    [visited addObject:beginWord];
+    
+    while([queue count] > 0){
+        
+        currentWord = [queue firstObject];
+        [queue removeObjectAtIndex:0];
+        result++;
+        
+        if([currentWord isEqualToString:endWord]){
+            return result;
+        }
+        else{
+            for(int i = 0; i < [currentWord length]; i++){
+                for(char currentChar = 'a'; currentChar <='z'; currentChar++){
+                    
+                    tempWord = [NSString stringWithFormat:@"%@%c%@", [currentWord substringToIndex:i], currentChar, [currentWord substringFromIndex:i + 1]];
+                    
+                    if([wordList containsObject:tempWord] && ![visited containsObject:tempWord]){
+                        
+                        if([tempWord isEqualToString:endWord]){
+                            return result;
+                        }
+                        
+                        [queue addObject:tempWord];
+                        [visited addObject:tempWord];
+                    }
+                }
+            }
+        }
+    }
+    
+    return 0;
 }
 
 @end

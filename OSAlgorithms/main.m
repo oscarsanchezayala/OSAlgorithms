@@ -16,6 +16,8 @@
 #import "OS_DFS_BFS.h"
 #import "OSTreeNode.h"
 #import "OSUndirectedGraphNode.h"
+#import "OSListNode.h"
+#import "OS_DP.h"
 
 @interface OSAlgorithms : NSObject
 
@@ -263,8 +265,60 @@
     NSArray *arrayLC207 = @[@[@0, @1]];
     int numLC207 = 2;
     [osDFS_BFS LC207:numLC207 with:arrayLC207];
+    
+    OSListNode *nodeLC109 = [[OSListNode alloc] initWithValue:-10];
+    nodeLC109.next = [[OSListNode alloc] initWithValue:-3];
+    nodeLC109.next.next = [[OSListNode alloc] initWithValue:0];
+    nodeLC109.next.next.next = [[OSListNode alloc] initWithValue:5];
+    nodeLC109.next.next.next.next = [[OSListNode alloc] initWithValue:9];
+    [osDFS_BFS LC109:nodeLC109];
+
+    NSString *strLC127Begin = @"hit";
+    NSString *strLC127End = @"cog";
+    NSArray *arrayLC127 = @[@"hot", @"dot", @"dog", @"lot", @"log", @"cog"];
+    strLC127Begin = @"a";
+    strLC127End = @"c";
+    arrayLC127 = @[@"a", @"b", @"c"];
+    [osDFS_BFS LC127:strLC127Begin with:strLC127End with:arrayLC127];
+
 }
 
+-(void)computeDP{
+    
+    OS_DP *osDP = [[OS_DP alloc] init];
+    
+    NSString *strLC032 = @"(()";
+    strLC032 = @")()())";
+    [osDP LC032:strLC032];
+
+    NSString *strLC091 = @"12";
+    //strLC091 = @"226";
+    [osDP LC091:strLC091];
+
+    NSArray *arrayLC064 = @[@[@1, @3, @1], @[@1, @5, @1], @[@4, @2, @1]];
+    //arrayLC064 = @[@[@1, @2], @[@1, @1]];
+    [osDP LC064:arrayLC064];
+    
+    NSString *strLC072Word1 = @"horse";
+    NSString *strLC072Word2 = @"ros";//3
+    strLC072Word1 = @"intention";
+    strLC072Word2 = @"execution";//5
+    strLC072Word1 = @"ultramicroscopically";
+    strLC072Word2 = @"pneumonoultramicroscopicsilicovolcanoconiosis";//27
+    [osDP LC072:strLC072Word1 with:strLC072Word2];
+    
+    NSArray *arrayLC198 = @[@2, @7, @9, @3, @1];
+    arrayLC198 = @[@2, @1, @1, @2];
+    [osDP LC198:arrayLC198];
+    
+    NSArray *arrayLC322 = @[@1, @2, @5];
+    int intLC322 = 11;
+    arrayLC322 = @[@2];
+    intLC322 = 3;
+    [osDP LC322:arrayLC322 with:intLC322];
+
+
+}
 @end
 
 
