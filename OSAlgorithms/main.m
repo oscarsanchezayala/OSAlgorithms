@@ -18,6 +18,7 @@
 #import "OSUndirectedGraphNode.h"
 #import "OSListNode.h"
 #import "OS_DP.h"
+#import "OS_Strings.h"
 
 @interface OSAlgorithms : NSObject
 
@@ -319,6 +320,26 @@
 
 
 }
+
+-(void)computeStrings{
+    
+    OS_Strings *osStrings = [[OS_Strings alloc] init];
+    
+    NSString *strLC678 = @"(*)";    //true
+    strLC678 = @"(";    //false
+    strLC678 = @"(())((())()()(*)(*()(())())())()()((()())((()))(*";    //false
+    strLC678 = @"(*()"; //true
+    strLC678 = @"((*)"; //true
+    [osStrings LC678:strLC678];
+    
+    NSString *strLC013 = @"LVIII";
+    strLC013 = @"MCMXCIV";
+    [osStrings LC013:strLC013];
+    
+    int intLC012 = 1994;
+    [osStrings LC012:intLC012];
+}
+
 @end
 
 
@@ -334,7 +355,9 @@ int main(int argc, const char * argv[]) {
         
         //[osAlgorithms computeDFSBFS];
         
-        [osAlgorithms computeArrayExamples];
+        //[osAlgorithms computeArrayExamples];
+        
+        [osAlgorithms computeStrings];
         
     }
     return 0;
