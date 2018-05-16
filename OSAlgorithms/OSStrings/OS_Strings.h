@@ -46,4 +46,65 @@
  * @return The string representation of roman number
  */
 -(NSString *)LC012:(int)num;
+
+/**
+ * 44. Wildcard Matching
+ * Given an input string (s) and a pattern (p),
+ * implement wildcard pattern matching with support for '?' and '*'.
+ * '?' Matches any single character.
+ * '*' Matches any sequence of characters (including the empty sequence).
+ *
+ * @param s The input string
+ * @param p The pattern to match
+ * @return If the pattern match the string
+ */
+-(BOOL)LC044:(NSString *)s with:(NSString *)p;
+
+/**
+ * 10. Regular Expression Matching
+ * Given an input string (s) and a pattern (p),
+ * implement regular expression matching with support for '.' and '*'.
+ * '.' Matches any single character.
+ * '*' Matches zero or more of the preceding element.
+ *
+ * @param s The input string
+ * @param p The pattern to match
+ * @return If the pattern match the string
+ */
+-(BOOL)LC010:(NSString *)s with:(NSString *)p;
+
+/**
+ * 22. Generate Parentheses
+ * Given n pairs of parentheses, write a function to
+ * generate all combinations of well-formed parentheses.
+ *
+ * @param n The number of pair of parentheses
+ * @return The array of all combinations
+ */
+-(NSMutableArray *)LC022:(int)n;
+
+/**
+ * 43. Multiply Strings
+ * Given two non-negative integers num1 and num2 represented as strings,
+ * return the product of num1 and num2, also represented as a string.
+ * The length of both num1 and num2 is < 110.
+ * Both num1 and num2 contain only digits 0-9.
+ * Both num1 and num2 do not contain any leading zero, except the number 0 itself.
+ * You must not use any built-in BigInteger library or convert the inputs to integer directly.
+ *
+ * @param num1 The string representation of the first number
+ * @param num2 The string representation of the second number
+ * @return The array of all combinations
+ */
+-(NSString *)LC043:(NSString *)num1 with:(NSString *)num2;
+
+/**
+ * 49. Group Anagrams
+ * Given an array of strings, group anagrams together.
+ *
+ * @param strs The array of strings
+ * @return The array of group of anagrams
+ */
+-(NSArray *)LC049:(NSArray *)strs;
+
 @end

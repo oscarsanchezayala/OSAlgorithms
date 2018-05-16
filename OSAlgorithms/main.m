@@ -338,6 +338,24 @@
     
     int intLC012 = 1994;
     [osStrings LC012:intLC012];
+    
+    NSString *strLC044_s = @"adceb";
+    NSString *strLC044_p = @"*a*b";
+    [osStrings LC044:strLC044_s with:strLC044_p];
+    
+    NSString *strLC010_s = @"aaa";
+    NSString *strLC010_p = @"ab*a*c*a";
+    [osStrings LC010:strLC010_s with:strLC010_p];
+    
+    [osStrings LC022:3];
+
+    NSString *strLC043_1 = @"123";
+    NSString *strLC043_2 = @"456";
+    [osStrings LC043:strLC043_1 with:strLC043_2];
+    
+    NSArray *strLC049 = @[@"eat", @"tea", @"tan", @"ate", @"nat", @"bat"];
+    [osStrings LC049:strLC049];
+
 }
 
 @end
