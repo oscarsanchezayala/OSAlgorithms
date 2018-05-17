@@ -19,6 +19,7 @@
 #import "OSListNode.h"
 #import "OS_DP.h"
 #import "OS_Strings.h"
+#import "OS_LinkedList.h"
 
 @interface OSAlgorithms : NSObject
 
@@ -355,6 +356,26 @@
     
     NSArray *strLC049 = @[@"eat", @"tea", @"tan", @"ate", @"nat", @"bat"];
     [osStrings LC049:strLC049];
+
+}
+
+-(void)computeLinkedList{
+    
+    OS_LinkedList *osLinkedList = [[OS_LinkedList alloc] init];
+    
+    OSListNode *node1 = [[OSListNode alloc] initWithValue:2];
+    OSListNode *node3 = [[OSListNode alloc] initWithValue:100];
+    node3.next= [[OSListNode alloc] initWithValue:6];
+    OSListNode *node4 = [[OSListNode alloc] initWithValue:-1];
+    NSArray *arrayLC023 = @[node1, node3, node4];
+    [osLinkedList LC023:arrayLC023];
+
+    OSListNode *nodeLC025 = [[OSListNode alloc] initWithValue:1];
+    nodeLC025.next = [[OSListNode alloc] initWithValue:2];
+    nodeLC025.next.next = [[OSListNode alloc] initWithValue:3];
+    nodeLC025.next.next.next = [[OSListNode alloc] initWithValue:4];
+    nodeLC025.next.next.next.next = [[OSListNode alloc] initWithValue:5];
+    [osLinkedList LC025:nodeLC025 with:1];
 
 }
 

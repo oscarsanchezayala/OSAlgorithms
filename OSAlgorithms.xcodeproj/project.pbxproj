@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F1F328720A7520F007676F5 /* OS_Strings.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1F328620A7520F007676F5 /* OS_Strings.m */; };
+		0F1F328E20ADB46E007676F5 /* OS_LinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1F328D20ADB46E007676F5 /* OS_LinkedList.m */; };
 		0F237D69209A8F9400C83060 /* OSTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F237D68209A8F9400C83060 /* OSTreeNode.m */; };
 		0F237D6C209BCC0C00C83060 /* OSUndirectedGraphNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F237D6B209BCC0C00C83060 /* OSUndirectedGraphNode.m */; };
 		0FD4A6C020A5238300FA8DCE /* OSListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD4A6BF20A5238300FA8DCE /* OSListNode.m */; };
@@ -40,6 +41,8 @@
 /* Begin PBXFileReference section */
 		0F1F328520A7520F007676F5 /* OS_Strings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OS_Strings.h; sourceTree = "<group>"; };
 		0F1F328620A7520F007676F5 /* OS_Strings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OS_Strings.m; sourceTree = "<group>"; };
+		0F1F328C20ADB46E007676F5 /* OS_LinkedList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OS_LinkedList.h; sourceTree = "<group>"; };
+		0F1F328D20ADB46E007676F5 /* OS_LinkedList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OS_LinkedList.m; sourceTree = "<group>"; };
 		0F237D67209A8F9400C83060 /* OSTreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSTreeNode.h; sourceTree = "<group>"; };
 		0F237D68209A8F9400C83060 /* OSTreeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSTreeNode.m; sourceTree = "<group>"; };
 		0F237D6A209BCC0C00C83060 /* OSUndirectedGraphNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSUndirectedGraphNode.h; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 			children = (
 				0FD4A6BE20A5238300FA8DCE /* OSListNode.h */,
 				0FD4A6BF20A5238300FA8DCE /* OSListNode.m */,
+				0F1F328C20ADB46E007676F5 /* OS_LinkedList.h */,
+				0F1F328D20ADB46E007676F5 /* OS_LinkedList.m */,
 			);
 			path = OSLinkedList;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FFCA3772083DFAF0072BBEC /* OSDisjointSet.m in Sources */,
+				0F1F328E20ADB46E007676F5 /* OS_LinkedList.m in Sources */,
 				0FFCA36E2083DD480072BBEC /* OSEntryNode.m in Sources */,
 				0F1F328720A7520F007676F5 /* OS_Strings.m in Sources */,
 				0FFCA349208397CA0072BBEC /* main.m in Sources */,
