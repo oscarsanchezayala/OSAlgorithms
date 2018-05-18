@@ -376,6 +376,29 @@
     nodeLC025.next.next.next = [[OSListNode alloc] initWithValue:4];
     nodeLC025.next.next.next.next = [[OSListNode alloc] initWithValue:5];
     [osLinkedList LC025:nodeLC025 with:1];
+    
+    OSListNode *nodeLC206 = [[OSListNode alloc] initWithValue:1];
+    nodeLC206.next = [[OSListNode alloc] initWithValue:2];
+    nodeLC206.next.next = [[OSListNode alloc] initWithValue:3];
+    nodeLC206.next.next.next = [[OSListNode alloc] initWithValue:4];
+    nodeLC206.next.next.next.next = [[OSListNode alloc] initWithValue:5];
+    [osLinkedList LC206:nodeLC206];
+
+    OSListNode *nodeLC024 = [[OSListNode alloc] initWithValue:1];
+    nodeLC024.next = [[OSListNode alloc] initWithValue:2];
+    nodeLC024.next.next = [[OSListNode alloc] initWithValue:3];
+    nodeLC024.next.next.next = [[OSListNode alloc] initWithValue:4];
+    nodeLC024.next.next.next.next = [[OSListNode alloc] initWithValue:5];
+    [osLinkedList LC024:nodeLC024];
+
+    OSListNode *nodeLC002_1 = [[OSListNode alloc] initWithValue:2];
+    nodeLC002_1.next = [[OSListNode alloc] initWithValue:4];
+    nodeLC002_1.next.next = [[OSListNode alloc] initWithValue:3];
+    
+    OSListNode *nodeLC002_2 = [[OSListNode alloc] initWithValue:5];
+    nodeLC002_2.next = [[OSListNode alloc] initWithValue:6];
+    nodeLC002_2.next.next = [[OSListNode alloc] initWithValue:4];
+    [osLinkedList LC002:nodeLC002_1 with:nodeLC002_2];
 
 }
 

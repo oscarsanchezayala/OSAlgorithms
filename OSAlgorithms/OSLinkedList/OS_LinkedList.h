@@ -35,4 +35,37 @@
  */
 -(OSListNode *)LC025:(OSListNode *)head with:(int)k;
 
+/**
+ * 206. Reverse Linked List
+ * Reverse a singly linked list.
+ *
+ * @param head The linkedlist node to reverse
+ * @return The reversed LinkedList node
+ */
+-(OSListNode *)LC206:(OSListNode *)head;
+
+/**
+ * 24. Swap Nodes in Pairs
+ * Given a linked list, swap every two adjacent nodes and return its head.
+ * Your algorithm should use only constant extra space.
+ * You may not modify the values in the list's nodes, only nodes itself may be changed.
+ *
+ * @param head The linkedlist node to reverse
+ * @return The reversed LinkedList node
+ */
+-(OSListNode *)LC024:(OSListNode *)head;
+
+/**
+* 2. Add Two Numbers
+* You are given two non-empty linked lists representing
+* two non-negative integers. The digits are stored in reverse
+* order and each of their nodes contain a single digit.
+* Add the two numbers and return it as a linked list.
+*
+* @param l1 The first linkedlist node to add
+* @param l2 The second linkedlist node to add
+* @return The sum of the two LinkedList nodes
+*/
+-(OSListNode *)LC002:(OSListNode *)l1 with:(OSListNode *)l2;
+
 @end

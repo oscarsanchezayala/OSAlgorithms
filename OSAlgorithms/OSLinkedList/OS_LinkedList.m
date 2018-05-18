@@ -80,5 +80,65 @@
     return result.next;
 }
 
+-(OSListNode *)LC206:(OSListNode *)head{
+    
+    if(head == nil){
+        return nil;
+    }
+    OSListNode *temp;
+    OSListNode *current = head;
+    OSListNode *prev = nil;
+    while(current != nil){
+        temp = current.next;
+        current.next = prev;
+        prev = current;
+        current = temp;
+    }
+    
+    return  prev;
+}
+
+-(OSListNode *)LC024:(OSListNode *)head{
+    
+    if(head == nil){
+        return nil;
+    }
+    OSListNode *prev = head;
+    OSListNode *current = prev.next;
+    OSListNode *first = current;
+    while(true){
+        OSListNode *next = current.next;
+        current.next = prev;
+        if(next == nil || next.next == nil){
+            prev.next = next;
+            break;
+        }
+        prev.next = next.next;
+        prev = next;
+        current = prev.next;
+    }
+    
+    return  first;
+}
+
+-(OSListNode *)LC002:(OSListNode *)l1 with:(OSListNode *)l2{
+    
+    return [self helperLC002:l1 with:l2 with:0];
+}
+-(OSListNode *)helperLC002:(OSListNode *)node1 with:(OSListNode *)node2 with:(int)carry{
+    
+    if(node1 == nil && node2 == nil){
+        if(carry > 0){
+            return [[OSListNode alloc] initWithValue:carry];
+        }
+        return nil;
+    }
+    
+    int tempSum = ((node1 == nil) ? 0 : node1.value) + ((node2 == nil) ? 0 : node2.value) + carry;
+    OSListNode *result = [[OSListNode alloc] initWithValue:tempSum % 10];
+    result.next = [self helperLC002:node1.next with:node2.next with:tempSum/10];
+    return result;
+}
+
 
 @end
