@@ -140,5 +140,137 @@
     return result;
 }
 
+-(OSListNode *)LC061:(OSListNode *)head with:(int)k{
+    
+    if(head == nil || head.next == nil || k == 0){
+        return head;
+    }
+    //  Get total number of nodes
+    int count = 1;
+    OSListNode *last = head;
+    while(last.next != nil){
+        count++;
+        last = last.next;
+    }
+    
+    //  Get the number of rotations
+    int rotate = k % count;
+    if(rotate == 0){
+        return head;
+    }
+    
+    OSListNode *current = head;
+    OSListNode *end = head;
+    while(rotate > 0 && current != nil){
+        current = current.next;
+        rotate--;
+    }
+    //  Get the nth node
+    while(current && current.next){
+        current = current.next;
+        end = end.next;
+    }
+    //  Update last element and rotated element
+    OSListNode *result = end.next;
+    last.next = head;
+    end.next = nil;
+    return result;
+}
+
+-(OSListNode *)LC445:(OSListNode *)l1 with:(OSListNode *)l2{
+    
+    if(l1 == nil){
+        return l2;
+    }
+    if(l2 == nil){
+        return l1;
+    }
+    // We can use two stacks to push all values of each linkedlist and then sum them up
+    NSMutableArray *stack1 = [NSMutableArray array];
+    NSMutableArray *stack2 = [NSMutableArray array];
+    OSListNode *temp = l1;
+    // Traverse first linkedlist and push each node value into stack1
+    while(temp != nil){
+        [stack1 addObject:[NSNumber numberWithInt:temp.value]];
+        temp = temp.next;
+    }
+    temp = l2;
+    // Traverse second linkedlist and push each node value into stack2
+    while(temp != nil){
+        [stack2 addObject:[NSNumber numberWithInt:temp.value]];
+        temp = temp.next;
+    }
+    // Traverse each stack and create new linkedlist
+    OSListNode *prev = nil;
+    temp = nil;
+    int carry = 0;
+    while([stack1 count] > 0 || [stack2 count] > 0){
+        int first = ([stack1 count] == 0) ? 0 : [[stack1 lastObject] intValue];
+        int second = ([stack2 count] == 0) ? 0 : [[stack2 lastObject] intValue];
+        [stack1 removeLastObject];
+        [stack2 removeLastObject];
+        int newValue = (first + second + carry) % 10;
+        carry = (first + second + carry) / 10;
+        
+        prev = [[OSListNode alloc] initWithValue:newValue];
+        prev.next = temp;
+        temp = prev;
+    }
+    // In case carry is greater than zero we have to create another node
+    // think in the case of l1 = 5 and l2 = 5
+    if(carry > 0){
+        prev = [[OSListNode alloc] initWithValue:carry];
+        prev.next = temp;
+        temp = prev;
+    }
+    
+    return temp;
+}
+
+-(NSArray *)LC725:(OSListNode *)root with:(int)k{
+    
+    NSMutableArray *result = [NSMutableArray array];
+    if(root == nil || k == 1){
+        [result addObject:root];
+        return [result copy];
+    }
+    
+    int count = 1;
+    OSListNode *temp = root;
+    OSListNode *current = root;
+    OSListNode *node = root;
+    //  Get the total number of nodes
+    while(temp.next != nil){
+        temp = temp.next;
+        count++;
+    }
+    //  Get the remain elements
+    int remain = count % k;
+    //  Get the total elements per group
+    int parts = count / k;
+    for(int i = 0; i < k; i++){
+        //  This element will be added to the result
+        node = current;
+        //  Basically we are going to divide the remaining elements and add insert into the first
+        //  remain'th elements
+        for(int j = 0; j < parts + (i < remain ? 1 : 0) - 1; j++){
+            if(current != nil){
+                current = current.next;
+            }
+        }
+        //  If current node is not nil we update it's next element to nil and store
+        //  the next element in a temp node
+        if(current != nil){
+            temp = current;
+            current = current.next;
+            temp.next = nil;
+        }
+        
+        [result addObject:node == nil ? [NSNull null] : node];
+    }
+    
+    return [result copy];
+}
+
 
 @end

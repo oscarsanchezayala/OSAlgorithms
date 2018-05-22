@@ -400,6 +400,42 @@
     nodeLC002_2.next.next = [[OSListNode alloc] initWithValue:4];
     [osLinkedList LC002:nodeLC002_1 with:nodeLC002_2];
 
+    OSListNode *nodeLC061 = [[OSListNode alloc] initWithValue:1];
+    nodeLC061.next = [[OSListNode alloc] initWithValue:2];
+    //nodeLC061.next.next = [[OSListNode alloc] initWithValue:3];
+    //nodeLC061.next.next.next = [[OSListNode alloc] initWithValue:4];
+    //nodeLC061.next.next.next.next = [[OSListNode alloc] initWithValue:5];
+    int kLC061 = 4;
+    kLC061 = 2;
+    kLC061 = 1;
+    [osLinkedList LC061:nodeLC061 with:kLC061];
+
+    OSListNode *nodeLC445_1 = [[OSListNode alloc] initWithValue:7];
+    nodeLC445_1.next = [[OSListNode alloc] initWithValue:2];
+    nodeLC445_1.next.next = [[OSListNode alloc] initWithValue:4];
+    nodeLC445_1.next.next.next = [[OSListNode alloc] initWithValue:3];
+    OSListNode *nodeLC445_2 = [[OSListNode alloc] initWithValue:5];
+    nodeLC445_2.next = [[OSListNode alloc] initWithValue:6];
+    nodeLC445_2.next.next = [[OSListNode alloc] initWithValue:4];
+    // 7->8->0->7
+    nodeLC445_1 = [[OSListNode alloc] initWithValue:5];
+    nodeLC445_2 = [[OSListNode alloc] initWithValue:5];
+    // 1->0
+    [osLinkedList LC445:nodeLC445_1 with:nodeLC445_2];
+
+    OSListNode *nodeLC725 = [[OSListNode alloc] initWithValue:1];
+    nodeLC725.next = [[OSListNode alloc] initWithValue:2];
+    nodeLC725.next.next = [[OSListNode alloc] initWithValue:3];
+    nodeLC725.next.next.next = [[OSListNode alloc] initWithValue:4];
+    //        nodeLC725.next.next.next.next = [[OSListNode alloc] initWithValue:5];
+    //        nodeLC725.next.next.next.next.next = [[OSListNode alloc] initWithValue:6];
+    //        nodeLC725.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:7];
+    //        nodeLC725.next.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:8];
+    //        nodeLC725.next.next.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:9];
+    //        nodeLC725.next.next.next.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:10];
+    int kLC725 = 5;
+    [osLinkedList LC725:nodeLC725 with:kLC725];
+
 }
 
 @end

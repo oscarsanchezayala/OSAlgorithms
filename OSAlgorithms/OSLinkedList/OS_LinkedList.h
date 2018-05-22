@@ -68,4 +68,48 @@
 */
 -(OSListNode *)LC002:(OSListNode *)l1 with:(OSListNode *)l2;
 
+/**
+ * 61. Rotate List
+ * Given a linked list, rotate the list to the right
+ * by k places, where k is non-negative.
+ *
+ * @param head The linkedlist node to rotate
+ * @param k The rotation number
+ * @return The rotated LinkedList
+ */
+-(OSListNode *)LC061:(OSListNode *)head with:(int)k;
+
+/**
+ * 445. Add Two Numbers II
+ * You are given two non-empty linked lists representing
+ * two non-negative integers. The most significant digit
+ * comes first and each of their nodes contain a single digit.
+ * Add the two numbers and return it as a linked list.
+ * You may assume the two numbers do not contain any leading zero,
+ * except the number 0 itself.
+ *
+ * @param l1 The first linkedlist
+ * @param l2 The second linkedlist
+ * @return The result LinkedList
+ */
+-(OSListNode *)LC445:(OSListNode *)l1 with:(OSListNode *)l2;
+
+/**
+ * 725. Split Linked List in Parts
+ * Given a (singly) linked list with head node root,
+ * write a function to split the linked list into k consecutive linked list "parts".
+ * The length of each part should be as equal as possible:
+ * no two parts should have a size differing by more than 1.
+ * This may lead to some parts being null.
+ * The parts should be in order of occurrence in the input list,
+ * and parts occurring earlier should always have a size greater
+ * than or equal parts occurring later.
+ * Return a List of ListNode's representing the linked list parts that are formed.
+ *
+ * @param root The linkedlist to split
+ * @param k The number of elements to split
+ * @return The list of LinkedList
+ */
+-(NSArray *)LC725:(OSListNode *)root with:(int)k;
+
 @end
