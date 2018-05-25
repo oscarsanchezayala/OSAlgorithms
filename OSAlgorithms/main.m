@@ -113,7 +113,23 @@
     int kLC719 = 2;
     [osArray LC719:arrayLC719 with:kLC719];
 
-    
+    NSArray *arrayLC153 = @[@3, @4, @5, @1, @2];
+    arrayLC153 = @[@2, @3, @4, @5, @1];
+    arrayLC153 = @[@4, @5, @1, @2, @3];
+    [osArray LC153:arrayLC153];
+
+    NSMutableArray *arrayLC031 = [[NSMutableArray alloc] initWithObjects:@1, @2, @3, @4, @5, nil];
+    [osArray LC031:arrayLC031];
+    [osArray LC031:arrayLC031];
+    [osArray LC031:arrayLC031];
+    [osArray LC031:arrayLC031];
+    [osArray LC031:arrayLC031];
+    [osArray LC031:arrayLC031];
+
+    NSMutableArray *arrayLC075 = [[NSMutableArray alloc] initWithObjects:@2, @0, @2, @1, @1, @0, nil];
+    arrayLC075 = [[NSMutableArray alloc] initWithObjects:@2, @0, @1, nil];
+    [osArray LC075:arrayLC075];
+
     
     /*
      
@@ -435,6 +451,19 @@
     //        nodeLC725.next.next.next.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:10];
     int kLC725 = 5;
     [osLinkedList LC725:nodeLC725 with:kLC725];
+
+    OSListNode *nodeLC148 = [[OSListNode alloc] initWithValue:1];
+    nodeLC148.next = [[OSListNode alloc] initWithValue:3];
+    nodeLC148.next.next = [[OSListNode alloc] initWithValue:3];
+    nodeLC148.next.next.next = [[OSListNode alloc] initWithValue:1];
+    nodeLC148.next.next.next.next = [[OSListNode alloc] initWithValue:3];
+    nodeLC148.next.next.next.next.next = [[OSListNode alloc] initWithValue:1];
+    nodeLC148.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:3];
+    nodeLC148.next.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:3];
+    nodeLC148.next.next.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:2];
+    nodeLC148.next.next.next.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:2];
+    
+    [osLinkedList LC148:nodeLC148];
 
 }
 

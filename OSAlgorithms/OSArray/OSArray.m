@@ -409,4 +409,142 @@
     return low;
 }
 
+-(int)LC153:(NSArray *)nums{
+    
+    if([nums count] == 0){
+        return INT_MIN;
+    }
+    
+    //  We can find the minimim value using binary search
+    //  we split the array in two halfs and compare left index against middle index
+    //  if left half is sorted that means the pivot is in the right half
+    //  everytime we check the two halfs we also check if left index is less than right index
+    //  so if this check is true the lef index is the minimum value
+    int left = 0;
+    int right = (int)[nums count] - 1;
+    int mid = 0;
+    int leftVal = 0;
+    int rightVal = 0;
+    int midVal = 0;
+    while(left < right){
+        
+        mid = (left + right) / 2;
+        midVal = [nums[mid] intValue];
+        leftVal = [nums[left] intValue];
+        rightVal = [nums[right] intValue];
+        
+        if(leftVal < rightVal){
+            return leftVal;
+        }
+        else{
+            
+            if(leftVal <= midVal){
+                left = mid + 1;
+            }
+            else{
+                right = mid;
+            }
+        }
+    }
+    leftVal = [nums[left] intValue];
+    return leftVal;
+}
+
+-(void)LC031:(NSMutableArray *)nums{
+    
+    if([nums count] < 2){
+        return;
+    }
+    
+    int index = (int)[nums count] - 2;
+    int rightIndex = (int)[nums count] - 1;
+    //  From index n-2 to index 0 find the first decreasing element in the array
+    while(index >= 0 && [nums[index] intValue] >= [nums[index + 1] intValue]){
+        index--;
+    }
+    //  If the index of first decreasing element is greater than 0 lets find the
+    //  first element that is less than it and swap
+    if(index >= 0){
+        while(rightIndex >= 0 && [nums[index] intValue] >= [nums[rightIndex] intValue]){
+            rightIndex--;
+        }
+        [nums exchangeObjectAtIndex:index withObjectAtIndex:rightIndex];
+    }
+    //  Reverse all elements after index of first decreasing element
+    index++;
+    rightIndex = (int)[nums count] - 1;
+    while(index < rightIndex){
+        [nums exchangeObjectAtIndex:index withObjectAtIndex:rightIndex];
+        index++;
+        rightIndex--;
+    }
+    
+}
+
+-(int)LC042:(NSArray *)height{
+    
+    int result = 0;
+    if([height count] == 0){
+        return result;
+    }
+    
+    NSMutableArray *leftArray = [NSMutableArray array];
+    int maxSofar = 0;
+    int maxRight = 0;
+    
+    for(int i = 0; i < [height count]; i++){
+        maxSofar = fmax(maxSofar, [height[i] intValue]);
+        [leftArray addObject:[NSNumber numberWithInt:maxSofar]];
+    }
+    maxSofar = 0;
+    for(int i = (int)[height count] - 1; i >= 0; i--){
+        
+        maxRight = fmax(maxRight, [height[i] intValue]);
+        
+        result += fmin(maxRight, [leftArray[i] intValue]) - [height[i] intValue];
+    }
+    
+    return result;
+}
+
+-(void)LC075:(NSMutableArray *)nums{
+    
+    //  We can use three pointers in which lets call it currentIndex is going to traverse
+    //  the array and check whether is 0 or 2 so we can swap with zeroIndex or twoIndex
+    //  and increment or decrement the pointers
+    int twoIndex = (int)[nums count] - 1;
+    int zeroIndex = 0;
+    
+    for(int i = 0; i <= twoIndex; i++){
+        
+        if([nums[i] intValue] == 2){
+            [nums exchangeObjectAtIndex:i withObjectAtIndex:twoIndex];
+            twoIndex--;
+            i--;
+        }
+        else if([nums[i] intValue] == 0){
+            [nums exchangeObjectAtIndex:zeroIndex withObjectAtIndex:i];
+            zeroIndex++;
+        }
+        
+    }
+}
+
+-(NSArray *)LC046:(NSArray *)nums{
+    
+    NSMutableArray *result = [NSMutableArray array];
+    NSMutableArray *array = [nums mutableCopy];
+    [result addObject:[array copy]];
+    while(true){
+        
+        [self LC031:array];
+        if([nums isEqualToArray:array]){
+            break;
+        }
+        [result addObject:[array copy]];
+    }
+    
+    return [result copy];
+}
+
 @end

@@ -112,4 +112,13 @@
  */
 -(NSArray *)LC725:(OSListNode *)root with:(int)k;
 
+/**
+ * 148. Sort List
+ * Sort a linked list in O(n log n) time using constant space complexity.
+ *
+ * @param head The linkedlist to sort
+ * @return The sorted LinkedList
+ */
+-(OSListNode *)LC148:(OSListNode *)head;
+
 @end

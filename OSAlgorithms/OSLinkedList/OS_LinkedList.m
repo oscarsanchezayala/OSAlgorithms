@@ -272,5 +272,48 @@
     return [result copy];
 }
 
+-(OSListNode *)LC148:(OSListNode *)head{
+    
+    if(head == nil || head.next == nil){
+        return head;
+    }
+    
+    //  Divide the linkedlist in two halfs and merge them like merge sort algorithm
+    OSListNode *mid = head;
+    OSListNode *right = head;
+    OSListNode *runner = head;
+    while(runner != nil && runner.next != nil){
+        mid = right;
+        right = right.next;
+        runner = runner.next.next;
+    }
+    //  Here is where we break the first half
+    mid.next = nil;
+    
+    return [self helperLC148:[self LC148:head] with:[self LC148:right]];
+}
+
+-(OSListNode *)helperLC148:(OSListNode *)node1 with:(OSListNode *)node2{
+    
+    //  If one of the linkedlist is null return whoever is not nil
+    if(node1 == nil){
+        return node2;
+    }
+    if(node2 == nil){
+        return node1;
+    }
+    
+    //  Check greater value and merge them recursively
+    if(node1.value > node2.value){
+        node2.next = [self helperLC148:node1 with:node2.next];
+        return node2;
+    }
+    else{
+        node1.next = [self helperLC148:node2 with:node1.next];
+        return node1;
+    }
+}
+
+
 
 @end

@@ -140,4 +140,62 @@
  */
 -(int)LC719:(NSArray *)M with:(int)k;
 
+/**
+ * 153. Find Minimum in Rotated Sorted Array
+ * Suppose an array sorted in ascending order is rotated
+ * at some pivot unknown to you beforehand.
+ * (i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
+ * Find the minimum element.
+ * You may assume no duplicate exists in the array.
+ *
+ * @param nums The array of integers
+ * @return The minimum value in the input array
+ */
+-(int)LC153:(NSArray *)nums;
+
+/**
+ * 31. Next Permutation
+ * Implement next permutation, which rearranges numbers
+ * into the lexicographically next greater permutation of numbers.
+ * If such arrangement is not possible, it must rearrange it
+ * as the lowest possible order (ie, sorted in ascending order).
+ * The replacement must be in-place and use only constant extra memory.
+ *
+ * @param nums The array of integers
+ */
+-(void)LC031:(NSMutableArray *)nums;
+
+/**
+ * 42. Trapping Rain Water
+ * Given n non-negative integers representing an elevation map
+ * where the width of each bar is 1, compute how much water it
+ * is able to trap after raining.
+ *
+ * @param height The array of integers
+ * @return The total water trapped
+ */
+-(int)LC042:(NSArray *)height;
+
+/**
+ * 75. Sort Colors
+ * Given an array with n objects colored red, white or blue,
+ * sort them in-place so that objects of the same color are adjacent,
+ * with the colors in the order red, white and blue.
+ * Here, we will use the integers 0, 1, and 2 to represent
+ * the color red, white, and blue respectively.
+ * Note: You are not suppose to use the library's sort function for this problem.
+ *
+ * @param nums The array of integers
+ */
+-(void)LC075:(NSMutableArray *)nums;
+
+/**
+ * 46. Permutations
+ * Given a collection of distinct integers, return all possible permutations.
+ *
+ * @param nums The array of integers
+ */
+-(NSArray *)LC046:(NSArray *)nums;
+
+
 @end
