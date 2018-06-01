@@ -816,4 +816,62 @@
     return 0;
 }
 
+-(NSString *)LC332:(NSArray *)tickets{
+    
+    if([tickets count] == 0){
+        return @"";
+    }
+    
+    //  Create a dictionary for each element and the value will be an array
+    //  with all destinations
+    NSString *result = @"";
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSString *ticketFrom = @"";
+    NSString *ticketTo = @"";
+    for(NSArray *array in tickets){
+        ticketFrom = array[0];
+        ticketTo = array[1];
+        NSMutableArray *temp = [dic objectForKey:ticketFrom];
+        if(temp == nil){
+            temp = [NSMutableArray array];
+            [dic setObject:temp forKey:ticketFrom];
+        }
+        [temp addObject:ticketTo];
+    }
+    //  Sort the elements to get lexical order
+    for(NSString *key in [dic allKeys]){
+        NSMutableArray *temp = [dic objectForKey:key];
+        temp = [[[[temp sortedArrayUsingSelector:@selector(compare:)] reverseObjectEnumerator] allObjects] mutableCopy];
+        [dic setObject:temp forKey:key];
+    }
+    
+    //  We can use Hierholzer’s Algorithm in order to solve this problem
+    //  The idea is use a stack to push every key element from the dictionary
+    //  if the array of elements for each key is empty we are going to push the key in the
+    //  itinerary and updating the current key from the stack
+    NSMutableArray *stack = [NSMutableArray array];
+    NSMutableArray *itinerary = [NSMutableArray array];
+    NSString *current = @"JFK";
+    
+    while([stack count] > 0 || [[dic objectForKey:current] count] > 0){
+        NSMutableArray *temp = [dic objectForKey:current];
+        if([temp count] == 0){
+            [itinerary addObject:current];
+            current = [stack lastObject];
+            [stack removeLastObject];
+        }
+        else{
+            [stack addObject:current];
+            current = [temp lastObject];
+            [temp removeLastObject];
+        }
+    }
+    
+    [itinerary addObject:current];
+    result = [[[itinerary reverseObjectEnumerator] allObjects] componentsJoinedByString:@","];
+    
+    return result;
+}
+
+
 @end

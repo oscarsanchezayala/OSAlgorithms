@@ -197,5 +197,51 @@
  */
 -(NSArray *)LC046:(NSArray *)nums;
 
+/**
+ * 53. Maximum Subarray
+ * Given an integer array nums, find the contiguous subarray
+ * (containing at least one number) which has the largest sum and return its sum.
+ *
+ * param nums The array of integers
+ * return The maximum subarray sum
+ */
+-(int)LC053:(NSArray *)nums;
+
+/**
+ * 215. Kth Largest Element in an Array
+ * Find the kth largest element in an unsorted array.
+ * Note that it is the kth largest element in the sorted
+ * order, not the kth distinct element.
+ *
+ * @param nums The array of integers
+ * @param k The kth element
+ * return The kth largest element
+ */
+-(int)LC215:(NSArray *)nums with:(int)k;
+
+/**
+ * 240. Search a 2D Matrix II
+ * Write an efficient algorithm that searches for a value
+ * in an m x n matrix. This matrix has the following properties:
+ * Integers in each row are sorted in ascending from left to right.
+ * Integers in each column are sorted in ascending from top to bottom.
+ *
+ * @param matrix The 2D array of integers
+ * @param target The integer to found
+ * return If target exists in the matrix
+ */
+-(int)LC240:(NSArray *)matrix with:(int)target;
+
+/**
+ * 442. Find All Duplicates in an Array
+ * Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array),
+ * some elements appear twice and others appear once.
+ * Find all the elements that appear twice in this array.
+ * Could you do it without extra space and in O(n) runtime?
+ *
+ * @param nums The array of integers
+ * return The array of duplicates
+ */
+-(NSArray *)LC442:(NSArray *)nums;
 
 @end

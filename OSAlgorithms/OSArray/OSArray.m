@@ -547,4 +547,119 @@
     return [result copy];
 }
 
+-(int)LC053:(NSArray *)nums{
+    
+    if([nums count] == 0){
+        return 0;
+    }
+    
+    int result = INT_MIN;
+    int currentMax = 0;
+    //  Based on kadane's algorithm, we can keep adding elements to a variable
+    //   if this variable become less than zero we start over from 0 since a negative
+    //  value will not help with maximum result
+    for(int i = 0; i < [nums count]; i++){
+        currentMax += [nums[i] intValue];
+        result = fmax(result, currentMax);
+        
+        if(currentMax < 0){
+            currentMax = 0;
+        }
+    }
+    
+    return result;
+    
+}
+
+-(int)LC215:(NSArray *)nums with:(int)k{
+    
+    if([nums count] == 0){
+        return 0;
+    }
+    
+    int end = (int)[nums count] - k;
+    int result = [self helperLC215:[nums mutableCopy] with:0 with:end + k - 1 with:end];
+    
+    return result;
+}
+-(int)helperLC215:(NSMutableArray *)nums with:(int)start with:(int)end with:(int)k{
+    
+    int left = start;
+    int pivot = [nums[end] intValue];
+    
+    for(int i = left; i < end; i++){
+        
+        if([nums[i] intValue] <= pivot){
+            [nums exchangeObjectAtIndex:left withObjectAtIndex:i];
+            left++;
+        }
+    }
+    
+    if([nums[left] intValue] >= pivot){
+        [nums exchangeObjectAtIndex:left withObjectAtIndex:end];
+    }
+    
+    if(left == k){
+        return [nums[left] intValue];
+    }
+    else if(left < k){
+        return [self helperLC215:nums with:left + 1 with:end with:k];
+    }
+    else{
+        return [self helperLC215:nums with:start with:left - 1 with:k];
+    }
+}
+
+-(int)LC240:(NSArray *)matrix with:(int)target{
+    
+    if([matrix count] == 0){
+        return 0;
+    }
+    
+    //  Since each row is sorted we can start iterating from last column and first row
+    //  and decrementing the column if the value is greater than the target and increment the
+    //  row when value is less than target
+    int row = 0;
+    int col = (int)[matrix[0] count] - 1;
+    
+    while(row < [matrix count] && col >= 0){
+        
+        if([matrix[row][col] intValue] == target){
+            return true;
+        }
+        else if([matrix[row][col] intValue] > target){
+            col--;
+        }
+        else{
+            row++;
+        }
+    }
+    
+    return false;
+}
+
+-(NSArray *)LC442:(NSArray *)nums{
+    
+    if([nums count] == 0){
+        return nums;
+    }
+    
+    NSMutableSet *result = [NSMutableSet set];
+    NSMutableArray *numbers = [nums mutableCopy];
+    
+    for(int i = 0; i < [numbers count]; i++){
+        
+        int index = abs([nums[i] intValue]) - 1;
+        
+        if([numbers[index] intValue] >= 0){
+            [numbers replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:[numbers[index] intValue] * - 1]];
+        }
+        else{
+            [result addObject:[NSNumber numberWithInt:index + 1]];
+        }
+    }
+    
+    return [result allObjects];
+}
+
 @end

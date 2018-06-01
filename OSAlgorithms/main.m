@@ -130,7 +130,20 @@
     arrayLC075 = [[NSMutableArray alloc] initWithObjects:@2, @0, @1, nil];
     [osArray LC075:arrayLC075];
 
+    NSArray *arrayLC053 = @[@-2, @1, @-3, @4, @-1, @2, @1, @-5, @4];
+    [osArray LC053:arrayLC053];
+
+    NSArray *arrayLC215 = @[@3, @2, @1, @5, @6, @4];
+    [osArray LC215:arrayLC215 with:2];
+
+    NSArray *arrayLC240 = @[@[@1, @4, @7, @11, @15], @[@2, @5, @8, @12, @19], @[@3, @6, @9, @16, @22], @[@10, @13, @14, @17, @24], @[@18, @21, @23, @26, @30]];
+    [osArray LC240:arrayLC240 with:5];
     
+    NSArray *arrayLC442 = @[@1, @2, @3, @1, @3, @6, @6];
+    arrayLC442 = @[@4, @3, @2, @7, @8, @2, @3, @1];
+    arrayLC442 = @[@1, @1];
+    [osArray LC442:arrayLC442];
+
     /*
      
      NSArray *lc296 = @[
@@ -298,6 +311,9 @@
     strLC127End = @"c";
     arrayLC127 = @[@"a", @"b", @"c"];
     [osDFS_BFS LC127:strLC127Begin with:strLC127End with:arrayLC127];
+
+    NSArray *arrayLC332 = @[@[@"JFK", @"SFO"], @[@"JFK", @"ATL"], @[@"SFO", @"ATL"], @[@"ATL", @"JFK"], @[@"ATL", @"SFO"]];
+    [osDFS_BFS LC332:arrayLC332];
 
 }
 
