@@ -265,4 +265,52 @@
  */
 -(NSString *)LC332:(NSArray *)tickets;
 
+/**
+ * 112. Path Sum
+ * Given a binary tree and a sum, determine if the tree has a root-to-leaf
+ * path such that adding up all the values along the path equals the given sum.
+ * Note: A leaf is a node with no children.
+ *
+ * @param root The binary tree
+ * @param sum The target sum
+ * @return Path sum exists in the current binary tree
+ */
+-(int)LC112:(OSTreeNode *)root with:(int)sum;
+
+/**
+ * 113. Path Sum II
+ * Given a binary tree and a sum, find all root-to-leaf paths
+ * where each path's sum equals the given sum.
+ * Note: A leaf is a node with no children.
+ *
+ * @param root The binary tree
+ * @param sum The target sum
+ * @return Total Paths that sum the target
+ */
+-(NSArray *)LC113:(OSTreeNode *)root with:(int)sum;
+
+/**
+ * 129. Sum Root to Leaf Numbers
+ * Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+ * An example is the root-to-leaf path 1->2->3 which represents the number 123.
+ * Find the total sum of all root-to-leaf numbers.
+ * Note: A leaf is a node with no children.
+ *
+ * @param root The binary tree
+ * @return Total sum of all root-to-leaf numbers
+ */
+-(int)LC129:(OSTreeNode *)root;
+
+/**
+* 200. Number of Islands
+* Given a 2d grid map of '1's (land) and '0's (water), count the number of islands.
+* An island is surrounded by water and is formed by connecting adjacent
+* lands horizontally or vertically. You may assume all four edges of the
+* grid are all surrounded by water.
+*
+* @param grid The 2D array matrix
+* @return Total number of islands
+*/
+-(int)LC200:(NSArray *)grid;
+
 @end

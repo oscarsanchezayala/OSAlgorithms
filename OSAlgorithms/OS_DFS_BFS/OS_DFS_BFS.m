@@ -873,5 +873,122 @@
     return result;
 }
 
+-(int)LC112:(OSTreeNode *)root with:(int)sum{
+    
+    if(root == nil){
+        return false;
+    }
+    //  Using DFS to reach the leafs of the tree and checking whether current sum minus the root value is zero
+    if(root.left == nil && root.right == nil){
+        
+        return sum - root.value == 0;
+    }
+    
+    return [self LC112:root.left with:sum - root.value] || [self LC112:root.right with:sum - root.value];
+}
+
+-(NSArray *)LC113:(OSTreeNode *)root with:(int)sum{
+    
+    NSMutableArray *result = [NSMutableArray array];
+    if(root == nil){
+        return [result copy];
+    }
+    //  Using DFS to reach the leafs of the tree and checking whether current sum minus the root value is zero
+    //  and at the same time using backtracking to get all paths that sum the target
+    NSMutableArray *temp = [NSMutableArray array];
+    [self helperLC113:root with:sum with:temp with:result];
+    return result;
+}
+
+-(void)helperLC113:(OSTreeNode *)root with:(int)current with:(NSMutableArray *)temp with:(NSMutableArray *)result{
+    
+    if(root == nil){
+        return;
+    }
+    
+    [temp addObject:[NSNumber numberWithInt:root.value]];
+    int sum = current = root.value;
+    if(root.left == nil && root.right == nil && sum == 0){
+        [result addObject:temp];
+    }
+    [self helperLC113:root.left with:sum with:temp with:result];
+    [self helperLC113:root.right with:sum with:temp with:result];
+    [temp removeLastObject];
+    return;
+}
+
+-(int)LC129:(OSTreeNode *)root{
+    
+    if(root == nil){
+        return 0;
+    }
+    //  Using DFS to reach the leafs of the tree and converting current root-to-leaf numbers in a single number and using an array to store each root-to-leaf number
+    NSMutableArray *temp = [NSMutableArray array];
+    [self helperLC129:root with:0 with:temp];
+    int result = [[temp valueForKeyPath:@"@sum.self"] intValue];
+    return result;
+}
+
+-(void)helperLC129:(OSTreeNode *)root with:(int)current with:(NSMutableArray *)temp{
+    
+    current = current * 10 + root.value;
+    
+    if(root.left == nil && root.right == nil){
+        [temp addObject:[NSNumber numberWithInt:current]];
+    }
+    
+    if(root.left != nil){
+        [self helperLC129:root.left with:current with:temp];
+    }
+    
+    if(root.right != nil){
+        [self helperLC129:root.right with:current with:temp];
+    }
+    return;
+}
+
+-(int)LC200:(NSArray *)grid{
+    
+    if([grid count] == 0){
+        return 0;
+    }
+    //  Using DFS to explore all neighbors for each 1 found it on the grid and keep tracking all visited items
+    NSMutableSet *visited = [NSMutableSet set];
+    int result = 0;
+    for(int row = 0; row < [grid count]; row++){
+        for(int col = 0; col < [grid[0] count]; col++){
+            
+            NSString *current = [NSString stringWithFormat:@"%d-%d", row, col];
+            if([grid[row][col] isEqualToString:@"1"] && ![visited containsObject:current]){
+                result++;
+                [self helperLC200:grid with:row with:col with:visited];
+            }
+        }
+    }
+    
+    return result;
+}
+
+-(void)helperLC200:(NSArray *)matrix with:(int)row with:(int)col with:(NSMutableSet *)visited{
+    
+    //  Return if the row or column is out of bounds or if current item is 0 or if item already visited
+    if(row < 0 || row >= [matrix count] || col < 0 || col >= [matrix[0] count] || [matrix[row][col] isEqualToString:@"0"]){
+        return;
+    }
+    NSString *current = [NSString stringWithFormat:@"%d-%d", row, col];
+    if([visited containsObject:current]){
+        return;
+    }
+    
+    [visited addObject:current];
+    
+    //  Explore all neighbors for each position
+    [self helperLC200:matrix with:row + 1 with:col with:visited];
+    [self helperLC200:matrix with:row - 1 with:col with:visited];
+    [self helperLC200:matrix with:row with:col + 1 with:visited];
+    [self helperLC200:matrix with:row with:col - 1 with:visited];
+    
+}
+
 
 @end

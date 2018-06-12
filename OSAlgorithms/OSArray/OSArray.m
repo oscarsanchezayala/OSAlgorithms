@@ -662,4 +662,73 @@
     return [result allObjects];
 }
 
+-(void)LC189:(NSMutableArray *)nums with:(int)k{
+    
+    int total = k % [nums count];
+    
+    if(total == 0){
+        return;
+    }
+    
+    nums = [[[nums reverseObjectEnumerator] allObjects] mutableCopy];
+    
+    int start = 0;
+    int end = total - 1;
+    while(start < end){
+        [nums exchangeObjectAtIndex:start withObjectAtIndex:end];
+        start++;
+        end--;
+    }
+    
+    start = total;
+    end = (int)[nums count] - 1;
+    while(start < end){
+        [nums exchangeObjectAtIndex:start withObjectAtIndex:end];
+        start++;
+        end--;
+    }
+}
+
+-(int)LC621:(NSArray *)tasks with:(int)n{
+    
+    if([tasks count] == 0){
+        return 0;
+    }
+    int result = 0;
+    NSMutableArray *array = [NSMutableArray array];
+    for(int i = 0; i < 26; i++){
+        [array addObject:[NSNumber numberWithInt:0]];
+    }
+    for(NSString *item in tasks){
+        int index = [item characterAtIndex:0] - 'A';
+        int currentVal = [array[index] intValue];
+        [array replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:currentVal + 1]];
+    }
+    
+    array = [[array sortedArrayUsingSelector:@selector(compare:)] mutableCopy];
+    
+    while([[array lastObject] intValue] > 0){
+        
+        for(int i = 0; i <= n; i++){
+            
+            if([[array lastObject] intValue] == 0){
+                break;
+            }
+            
+            if(i < 26){
+                int tempVal = [array[25 - i] intValue];
+                if(tempVal > 0){
+                    [array replaceObjectAtIndex:25 - i withObject:[NSNumber numberWithInt:tempVal - 1]];
+                }
+            }
+            
+            result++;
+        }
+        
+        array = [[array sortedArrayUsingSelector:@selector(compare:)] mutableCopy];
+    }
+    
+    return result;
+}
+
 @end

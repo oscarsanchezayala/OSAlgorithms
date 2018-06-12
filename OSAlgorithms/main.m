@@ -144,6 +144,14 @@
     arrayLC442 = @[@1, @1];
     [osArray LC442:arrayLC442];
 
+    NSMutableArray *arrayLC189 = [[NSMutableArray alloc] initWithObjects:@1, @2, @3, @4, @5, nil];
+    arrayLC189 = [[NSMutableArray alloc] initWithObjects:@1, @2, nil];
+    [osArray LC189:arrayLC189 with:1];
+
+    NSMutableArray *arrayLC621 = [[NSMutableArray alloc] initWithObjects:@"A", @"A", @"A", @"B", @"B", @"B", nil];
+    //arrayLC621 = [[NSMutableArray alloc] initWithObjects:@1, @2, nil];
+    [osArray LC621:arrayLC621 with:2];
+
     /*
      
      NSArray *lc296 = @[
@@ -314,6 +322,10 @@
 
     NSArray *arrayLC332 = @[@[@"JFK", @"SFO"], @[@"JFK", @"ATL"], @[@"SFO", @"ATL"], @[@"ATL", @"JFK"], @[@"ATL", @"SFO"]];
     [osDFS_BFS LC332:arrayLC332];
+
+    NSArray *arrayLC200 = @[@[@"1", @"1", @"1", @"1", @"0"], @[@"1", @"1", @"0", @"1", @"0"], @[@"1", @"1", @"1", @"0", @"0"], @[@"0", @"0", @"0", @"0", @"0"]];
+    arrayLC200 = @[@[@"1", @"1", @"0", @"0", @"0"], @[@"1", @"1", @"0", @"0", @"0"], @[@"0", @"0", @"1", @"0", @"0"], @[@"0", @"0", @"0", @"1", @"1"]];
+    [osDFS_BFS LC200:arrayLC200];
 
 }
 
