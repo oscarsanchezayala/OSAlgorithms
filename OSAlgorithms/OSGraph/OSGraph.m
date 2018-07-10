@@ -487,15 +487,12 @@ static NSString *const kERROR_TOPOLIGICAL_SORT_CYCLE = @"Unable to compute Topol
         tempPath = @"";
         tempPathFormat = @"%@";
         OSVertex *current = [dictionary objectForKey:key];
-        NSString *idCurrent = current.idVertex;
         
         while(current.predecessor != nil){
             if(![tempPath isEqualToString:@""]){
                 tempPathFormat = @"%@->%@";
             }
             tempPath = [NSString stringWithFormat:tempPathFormat, current.idVertex, tempPath];
-            
-            idCurrent = current.idVertex;
             current = current.predecessor;
         }
         

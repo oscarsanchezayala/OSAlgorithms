@@ -231,7 +231,6 @@
     
     NSMutableArray *result = [NSMutableArray array];
     if(root == nil || k == 1){
-        [result addObject:root];
         return [result copy];
     }
     
@@ -312,6 +311,34 @@
         node1.next = [self helperLC148:node2 with:node1.next];
         return node1;
     }
+}
+
+-(OSListNode *)LC019:(OSListNode *)head with:(int)n{
+    
+    if(head == nil){
+        return head;
+    }
+    
+    OSListNode *result = [[OSListNode alloc] initWithValue:0];
+    result.next = head;
+    OSListNode *current = result;
+    OSListNode *runner = result;
+    
+    for(int i = 0; i < n; i++){
+        //  If we reach the end of the list n is greater than total nodes
+        if(runner.next == nil){
+            return result.next;
+        }
+        runner = runner.next;
+    }
+    //  We will find the Nth node from end once runner.next is nil
+    while(runner.next != nil){
+        current = current.next;
+        runner = runner.next;
+    }
+    //  remove Nth node
+    current.next = current.next.next;
+    return result.next;
 }
 
 

@@ -95,7 +95,7 @@
     NSArray *arrayLC724 = @[@1, @7, @3, @6, @5, @6];
     //arrayLC724 = @[@-1, @-1, @-1, @-1, @-1, @0];      // 2
     //arrayLC724 = @[@-1, @-1, @-1, @0, @-1, @-1];      // 2
-    arrayLC724 = @[@-1, @-1, @-1, @-1, @0, @1];         // 1
+    //arrayLC724 = @[@-1, @-1, @-1, @-1, @0, @1];         // 1
     [osArray LC724:arrayLC724];
     
     NSArray *arrayLC718A = @[@1, @2, @3, @2, @1];
@@ -103,19 +103,19 @@
     [osArray LC718:arrayLC718A with:arrayLC718B];
     
     NSArray *arrayLC713 = @[@10, @5, @2, @6];
-    arrayLC713 = @[@1, @2, @3];                         // 0
-    arrayLC713 = @[@1, @1, @1];                         // 1
+    //arrayLC713 = @[@1, @2, @3];                         // 0
+    //arrayLC713 = @[@1, @1, @1];                         // 1
     int kLC713 = 1;
     [osArray LC713:arrayLC713 with:kLC713];
 
     NSArray *arrayLC719 = @[@1, @3, @1];                // 1
-    arrayLC719 = @[@1, @2, @1, @2, @6, @7, @5, @1];     // 2
-    int kLC719 = 2;
+    //arrayLC719 = @[@1, @2, @1, @2, @6, @7, @5, @1];     // 2
+    int kLC719 = 1;
     [osArray LC719:arrayLC719 with:kLC719];
 
     NSArray *arrayLC153 = @[@3, @4, @5, @1, @2];
-    arrayLC153 = @[@2, @3, @4, @5, @1];
-    arrayLC153 = @[@4, @5, @1, @2, @3];
+    //arrayLC153 = @[@2, @3, @4, @5, @1];
+    //arrayLC153 = @[@4, @5, @1, @2, @3];
     [osArray LC153:arrayLC153];
 
     NSMutableArray *arrayLC031 = [[NSMutableArray alloc] initWithObjects:@1, @2, @3, @4, @5, nil];
@@ -127,7 +127,7 @@
     [osArray LC031:arrayLC031];
 
     NSMutableArray *arrayLC075 = [[NSMutableArray alloc] initWithObjects:@2, @0, @2, @1, @1, @0, nil];
-    arrayLC075 = [[NSMutableArray alloc] initWithObjects:@2, @0, @1, nil];
+    //arrayLC075 = [[NSMutableArray alloc] initWithObjects:@2, @0, @1, nil];
     [osArray LC075:arrayLC075];
 
     NSArray *arrayLC053 = @[@-2, @1, @-3, @4, @-1, @2, @1, @-5, @4];
@@ -140,12 +140,12 @@
     [osArray LC240:arrayLC240 with:5];
     
     NSArray *arrayLC442 = @[@1, @2, @3, @1, @3, @6, @6];
-    arrayLC442 = @[@4, @3, @2, @7, @8, @2, @3, @1];
-    arrayLC442 = @[@1, @1];
+    //arrayLC442 = @[@4, @3, @2, @7, @8, @2, @3, @1];
+    //arrayLC442 = @[@1, @1];
     [osArray LC442:arrayLC442];
 
     NSMutableArray *arrayLC189 = [[NSMutableArray alloc] initWithObjects:@1, @2, @3, @4, @5, nil];
-    arrayLC189 = [[NSMutableArray alloc] initWithObjects:@1, @2, nil];
+    //arrayLC189 = [[NSMutableArray alloc] initWithObjects:@1, @2, nil];
     [osArray LC189:arrayLC189 with:1];
 
     NSMutableArray *arrayLC621 = [[NSMutableArray alloc] initWithObjects:@"A", @"A", @"A", @"B", @"B", @"B", nil];
@@ -284,8 +284,8 @@
 
     NSArray *arrayLC106_postorder = @[@9, @15, @7, @20, @3];
     NSArray *arrayLC106_inorder = @[@9, @3, @15, @20, @7];
-    arrayLC106_postorder = @[@1, @2];
-    arrayLC106_inorder = @[@1, @2];
+    //arrayLC106_postorder = @[@1, @2];
+    //arrayLC106_inorder = @[@1, @2];
     [osDFS_BFS LC106:arrayLC106_postorder with:arrayLC106_inorder];
 
     OSTreeNode *rootLC114 = [[OSTreeNode alloc] initWithValue:1];
@@ -315,17 +315,24 @@
     NSString *strLC127Begin = @"hit";
     NSString *strLC127End = @"cog";
     NSArray *arrayLC127 = @[@"hot", @"dot", @"dog", @"lot", @"log", @"cog"];
-    strLC127Begin = @"a";
-    strLC127End = @"c";
-    arrayLC127 = @[@"a", @"b", @"c"];
+    //strLC127Begin = @"a";
+    //strLC127End = @"c";
+    //arrayLC127 = @[@"a", @"b", @"c"];
     [osDFS_BFS LC127:strLC127Begin with:strLC127End with:arrayLC127];
 
     NSArray *arrayLC332 = @[@[@"JFK", @"SFO"], @[@"JFK", @"ATL"], @[@"SFO", @"ATL"], @[@"ATL", @"JFK"], @[@"ATL", @"SFO"]];
     [osDFS_BFS LC332:arrayLC332];
 
     NSArray *arrayLC200 = @[@[@"1", @"1", @"1", @"1", @"0"], @[@"1", @"1", @"0", @"1", @"0"], @[@"1", @"1", @"1", @"0", @"0"], @[@"0", @"0", @"0", @"0", @"0"]];
-    arrayLC200 = @[@[@"1", @"1", @"0", @"0", @"0"], @[@"1", @"1", @"0", @"0", @"0"], @[@"0", @"0", @"1", @"0", @"0"], @[@"0", @"0", @"0", @"1", @"1"]];
+    //arrayLC200 = @[@[@"1", @"1", @"0", @"0", @"0"], @[@"1", @"1", @"0", @"0", @"0"], @[@"0", @"0", @"1", @"0", @"0"], @[@"0", @"0", @"0", @"1", @"1"]];
     [osDFS_BFS LC200:arrayLC200];
+
+    NSArray *arrayLC542 = @[@[@"0", @"0", @"0"], @[@"0", @"1", @"0"], @[@"1", @"1", @"1"]];
+    [osDFS_BFS LC542:arrayLC542];
+    
+    NSArray *arrayLC743 = @[@[@1, @2, @1], @[@2, @3, @2], @[@1, @3, @4]];
+    [osDFS_BFS LC743:arrayLC743 with:3 with:1];
+
 
 }
 
@@ -347,20 +354,20 @@
     
     NSString *strLC072Word1 = @"horse";
     NSString *strLC072Word2 = @"ros";//3
-    strLC072Word1 = @"intention";
-    strLC072Word2 = @"execution";//5
-    strLC072Word1 = @"ultramicroscopically";
-    strLC072Word2 = @"pneumonoultramicroscopicsilicovolcanoconiosis";//27
+//    strLC072Word1 = @"intention";
+//    strLC072Word2 = @"execution";//5
+//    strLC072Word1 = @"ultramicroscopically";
+//    strLC072Word2 = @"pneumonoultramicroscopicsilicovolcanoconiosis";//27
     [osDP LC072:strLC072Word1 with:strLC072Word2];
     
     NSArray *arrayLC198 = @[@2, @7, @9, @3, @1];
-    arrayLC198 = @[@2, @1, @1, @2];
+    //arrayLC198 = @[@2, @1, @1, @2];
     [osDP LC198:arrayLC198];
     
     NSArray *arrayLC322 = @[@1, @2, @5];
     int intLC322 = 11;
-    arrayLC322 = @[@2];
-    intLC322 = 3;
+    //arrayLC322 = @[@2];
+    //intLC322 = 3;
     [osDP LC322:arrayLC322 with:intLC322];
 
 
@@ -371,10 +378,10 @@
     OS_Strings *osStrings = [[OS_Strings alloc] init];
     
     NSString *strLC678 = @"(*)";    //true
-    strLC678 = @"(";    //false
-    strLC678 = @"(())((())()()(*)(*()(())())())()()((()())((()))(*";    //false
-    strLC678 = @"(*()"; //true
-    strLC678 = @"((*)"; //true
+//    strLC678 = @"(";    //false
+//    strLC678 = @"(())((())()()(*)(*()(())())())()()((()())((()))(*";    //false
+//    strLC678 = @"(*()"; //true
+//    strLC678 = @"((*)"; //true
     [osStrings LC678:strLC678];
     
     NSString *strLC013 = @"LVIII";
@@ -450,8 +457,8 @@
     //nodeLC061.next.next.next = [[OSListNode alloc] initWithValue:4];
     //nodeLC061.next.next.next.next = [[OSListNode alloc] initWithValue:5];
     int kLC061 = 4;
-    kLC061 = 2;
-    kLC061 = 1;
+    //kLC061 = 2;
+    //kLC061 = 1;
     [osLinkedList LC061:nodeLC061 with:kLC061];
 
     OSListNode *nodeLC445_1 = [[OSListNode alloc] initWithValue:7];
@@ -490,8 +497,14 @@
     nodeLC148.next.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:3];
     nodeLC148.next.next.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:2];
     nodeLC148.next.next.next.next.next.next.next.next.next = [[OSListNode alloc] initWithValue:2];
-    
     [osLinkedList LC148:nodeLC148];
+
+    OSListNode *head = [[OSListNode alloc] initWithValue:1];
+    head.next = [[OSListNode alloc] initWithValue:2];
+    head.next.next = [[OSListNode alloc] initWithValue:3];
+    head.next.next.next = [[OSListNode alloc] initWithValue:4];
+    head.next.next.next.next = [[OSListNode alloc] initWithValue:5];
+    OSListNode *result = [osLinkedList LC019:head with:4];
 
 }
 
@@ -501,6 +514,7 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
+        //  68
         
         OSAlgorithms *osAlgorithms = [[OSAlgorithms alloc] init];
         

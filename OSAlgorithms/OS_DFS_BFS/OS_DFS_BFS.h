@@ -313,4 +313,31 @@
 */
 -(int)LC200:(NSArray *)grid;
 
+/**
+ * 542. 01 Matrix
+ * Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell.
+ * The distance between two adjacent cells is 1.
+ *
+ * @param matrix The 2D array matrix
+ * @return The 2d array result
+ */
+-(NSArray *)LC542:(NSArray *)matrix;
+
+/**
+ * 743. Network Delay Time
+ * There are N network nodes, labelled 1 to N.
+ * Given times, a list of travel times as directed edges times[i] = (u, v, w),
+ * where u is the source node, v is the target node, and w is the time it takes
+ * for a signal to travel from source to target.
+ * Now, we send a signal from a certain node K. How long will it take for
+ * all nodes to receive the signal? If it is impossible, return -1.
+ *
+ * @param times The array of elements
+ * @param N The total number of nodes
+ * @param k The initial node
+ * @return The 2d array result
+ */
+-(int)LC743:(NSArray *)times with:(int)N with:(int)k;
+
+
 @end

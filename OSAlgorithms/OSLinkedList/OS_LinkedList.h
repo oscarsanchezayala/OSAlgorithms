@@ -121,4 +121,13 @@
  */
 -(OSListNode *)LC148:(OSListNode *)head;
 
+/**
+ * 19. Remove Nth Node From End of List
+ * Given a linked list, remove the n-th node from the end of list and return its head.
+ *
+ * @param head The head of the Linkedlist
+ * @param n The Nth node from end of list
+ */
+-(OSListNode *)LC019:(OSListNode *)head with:(int)n;
+
 @end

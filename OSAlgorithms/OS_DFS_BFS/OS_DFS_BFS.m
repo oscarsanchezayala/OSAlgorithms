@@ -11,6 +11,8 @@
 #import "OSTreeNode.h"
 #import "OSUndirectedGraphNode.h"
 #import "OSListNode.h"
+#import "OSFibonacciHeap.h"
+#import "OSEntryNode.h"
 
 #define matrixColsAllNeighbors [[NSArray alloc] initWithObjects:@1, @1, @1, @0, @0, @-1, @-1, nil]
 #define matrixRowsAllNeighbors [[NSArray alloc] initWithObjects:@-1, @0, @1, @-1, @1, @-1, @1, nil]
@@ -603,7 +605,7 @@
     
     // Last element in postorder array is always the root
     OSTreeNode *result = [[OSTreeNode alloc] initWithValue:[[postorder lastObject] intValue]];
-    OSTreeNode *currentTree = result;
+    OSTreeNode *currentTree;
     OSTreeNode *lastTree = nil;
     NSMutableArray *stack = [NSMutableArray array];
     int postorderIndex = (int)[postorder count] - 2;
@@ -989,6 +991,137 @@
     [self helperLC200:matrix with:row with:col - 1 with:visited];
     
 }
+
+-(NSArray *)LC542:(NSArray *)matrix{
+    
+    if([matrix count] == 0){
+        return matrix;
+    }
+    
+    //  We can use DP to check four neighbors of each cell that is not 0
+    //  we traverse the matrix two times, the first one to check top and left and the second pass
+    //  to check right and bottom neighbor
+    NSMutableArray *result = [NSMutableArray array];
+    for(int row = 0; row < [matrix count]; row++){
+        NSMutableArray *temp = [NSMutableArray array];
+        for(int col = 0; col < [matrix[0] count]; col++){
+            [temp addObject:[NSNumber numberWithInt:INT_MAX]];
+        }
+        [result addObject:temp];
+    }
+    
+    for(int row = 0; row < [matrix count]; row++){
+        for(int col = 0; col < [matrix[0] count]; col++){
+            if([matrix[row][col] intValue] == 0){
+                [result[row] replaceObjectAtIndex:col withObject:[NSNumber numberWithInt:0]];
+            }
+            else{
+                if(row > 0){
+                    int minVal = fmin([result[row][col] intValue], [result[row - 1][col] intValue] + 1);
+                    [result[row] replaceObjectAtIndex:col withObject:[NSNumber numberWithInt:minVal]];
+                }
+                if(col > 0){
+                    int minVal = fmin([result[row][col] intValue], [result[row][col - 1] intValue] + 1);
+                    [result[row] replaceObjectAtIndex:col withObject:[NSNumber numberWithInt:minVal]];
+                }
+            }
+        }
+    }
+    
+    for(int row = (int)[matrix count] - 1; row >= 0; row--){
+        for(int col = (int)[matrix[0] count] - 1; col >= 0; col--){
+            if([matrix[row][col] intValue] == 0){
+                [result[row] replaceObjectAtIndex:col withObject:[NSNumber numberWithInt:0]];
+            }
+            else{
+                if(row < (int)[matrix count] - 1){
+                    int minVal = fmin([result[row][col] intValue], [result[row + 1][col] intValue] + 1);
+                    [result[row] replaceObjectAtIndex:col withObject:[NSNumber numberWithInt:minVal]];
+                }
+                if(col < (int)[matrix[0] count] - 1){
+                    int minVal = fmin([result[row][col] intValue], [result[row][col + 1] intValue] + 1);
+                    [result[row] replaceObjectAtIndex:col withObject:[NSNumber numberWithInt:minVal]];
+                }
+            }
+        }
+    }
+    
+    return [result copy];
+}
+
+-(int)LC743:(NSArray *)times with:(int)N with:(int)k{
+    
+    int result = 0;
+    NSMutableDictionary *graph = [NSMutableDictionary dictionary];
+    for (NSArray *items in times){
+        NSNumber *key = [NSNumber numberWithInt:[items[0] intValue]];
+        NSMutableArray *values = [graph objectForKey:key];
+        if(values == nil){
+            values = [NSMutableArray array];
+            [graph setObject:values forKey:key];
+        }
+        NSMutableArray *temp = [NSMutableArray array];
+        [temp addObject:[NSNumber numberWithInt:[items[1] intValue]]];
+        [temp addObject:[NSNumber numberWithInt:[items[2] intValue]]];
+        [values addObject:temp];
+    }
+    
+    //  We can use Dijkstra's Algorithm and FibonacciHeap to solve this problem since is similar
+    //  to find shortest path in a DAG
+    OSFibonacciHeap *fibHead = [[OSFibonacciHeap alloc] init];
+    NSMutableDictionary *dicTemps = [NSMutableDictionary dictionary];
+    NSMutableArray *elements = [NSMutableArray array];
+    [elements addObject:[fibHead enqueue:[NSNumber numberWithInt:k] with:0]];
+    OSEntryNode *current;
+    
+    while(!fibHead.isEmpty){
+        
+        current = [fibHead dequeueMin];
+        
+        //  If current element already exists in our dictionary of temp values we skip it
+        if([dicTemps objectForKey:current.value] != nil){
+            continue;
+        }
+        
+        //  We add the current value into the dictionary of temps
+        [dicTemps setObject:[NSNumber numberWithInt:current.priority] forKey:current.value];
+        
+        for (NSMutableArray *items in [graph objectForKey:current.value]){
+            NSNumber *node = [NSNumber numberWithInt:[items[0] intValue]];
+            int distance = [items[1] intValue];
+            //  If current element does not exists in the dictionary of temp values we can either
+            //  enqueue the element or decrement the priority (new distance)
+            if([dicTemps objectForKey:node] == nil){
+                
+                int newDistance = current.priority + distance;
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"value == %@", node];
+                OSEntryNode *currentTemp = (OSEntryNode *)[[elements filteredArrayUsingPredicate:predicate] firstObject];
+                
+                if(currentTemp != nil){
+                    [fibHead decrementEntryNode:currentTemp with:newDistance];
+                }
+                else{
+                    [elements addObject:[fibHead enqueue:node with:newDistance]];
+                }
+            }
+        }
+    }
+    
+    //  If total number of elements in our dictionary is not equal to N we return -1 since
+    //  we cannot reach all elements in the current graph
+    //  Otherwise the result will be the maximum value from the dictionary
+    if([dicTemps count] != N){
+        return -1;
+    }
+    else{
+        for(id key in [dicTemps allKeys]){
+            result = fmax(result, [[dicTemps objectForKey:key] intValue]);
+        }
+    }
+    
+    return result;
+}
+
 
 
 @end

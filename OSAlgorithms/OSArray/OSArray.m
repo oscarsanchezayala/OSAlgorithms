@@ -56,7 +56,7 @@
     
     int tempSum = 0;
     int leftIndex = 1;
-    int rightIndex = (int)[M count] - 1;
+    int rightIndex;
     int valFirst;
     int valLeft = 0;
     int valRight = 0;
@@ -496,7 +496,6 @@
         maxSofar = fmax(maxSofar, [height[i] intValue]);
         [leftArray addObject:[NSNumber numberWithInt:maxSofar]];
     }
-    maxSofar = 0;
     for(int i = (int)[height count] - 1; i >= 0; i--){
         
         maxRight = fmax(maxRight, [height[i] intValue]);
