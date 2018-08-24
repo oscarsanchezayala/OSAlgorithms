@@ -327,6 +327,8 @@ static NSString *const kERROR_TOPOLIGICAL_SORT_CYCLE = @"Unable to compute Topol
     return [self createPath:allVertexes with:idSourceVertex];
 }
 
+#pragma mark - Dijkstra's Algorithm
+
 -(NSArray *)computeDijkstraAlgorithmFrom:(NSString *)idSourceVertex{
     
     return [self computeDijkstraAlgorithmFrom:idSourceVertex with:false];
